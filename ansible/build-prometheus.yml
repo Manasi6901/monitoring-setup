@@ -1,0 +1,13 @@
+- hosts: monitoring
+  tasks:
+    - name: Copy Prometheus files
+      copy:
+        src: ../prometheus/
+        dest: /home/ubuntu/prometheus/
+    
+    - name: Build Prometheus Docker image
+      docker_image:
+        name: custom_prometheus
+        build:
+          path: /home/ubuntu/prometheus/
+
